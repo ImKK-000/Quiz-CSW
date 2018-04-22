@@ -20,7 +20,7 @@ router.route('/users')
     .post(
         (req, res) => {
             const user = {}
-            user.id = user.length + 1
+            user.id = users.length + 1
             user.firstname = req.body.firstname
             user.lastname = req.body.lastname
             user.age = req.body.age

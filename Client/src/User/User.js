@@ -22,13 +22,14 @@ class User extends Component {
         }
 
     render() {
-        return (<div>
-                    <h1>User</h1>
+        return (
+            <div className="content-user">
+                    <h1>USERS</h1>
                     <ul> {this.renderUsers()}</ul>
 
                     <AddUser />
-               </div>)
-    }
+            </div>
+        )}
 }
 
 function mapStateToProps( state ) {

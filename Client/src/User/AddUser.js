@@ -14,13 +14,10 @@ class AddUser extends Component {
     }
 
     addUser(){
-        const ROOT_URL = 'http://localhost:8888/api/bears';
-        // const user = {
-        //   name: this.state.name,
-        //   weight: this.state.weight
-        // };
+        const ROOT_URL = 'http://localhost:8888/api/users';
+        const user = this.state;
     
-        axios.post( ROOT_URL, this.state)
+        axios.post( ROOT_URL, user)
           .then(res => {
             console.log(res);
             console.log(res.data);
@@ -35,23 +32,29 @@ class AddUser extends Component {
 
     render() {
         return (
-                <div>
-                    <Form inline>
-                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label  className="mr-sm-2">firstname : </Label>
-                        <Input
-                            type="text" name="firstname" placeholder="eg. Rap-yo!" 
-                            value={this.state.firstname}
-                            onChange={(e)=>{this.setState({firstname: e.target.value})}}
-                        />
-                        </FormGroup>
-                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label className="mr-sm-2">lastname : </Label>
-                        <Input
-                            type="text" name="lastname" placeholder="eg. 40"
-                            value={this.state.lastname}
-                            onChange={(e)=>{this.setState({lastname: e.target.value})}}
-                        />
+                <div className="add-user">
+                    <h1> Add User </h1>
+                    <Form>
+                        <FormGroup >
+                            <Label  className="mr-sm-2">Firstname : </Label>
+                            <Input
+                                type="text" name="firstname" placeholder="eg. Chakkrit" 
+                                value={this.state.firstname}
+                                onChange={(e)=>{this.setState({firstname: e.target.value})}}
+                            />
+        
+                            <Label className="mr-sm-2">Lastname : </Label>
+                            <Input
+                                type="text" name="lastname" placeholder="eg. C."
+                                value={this.state.lastname}
+                                onChange={(e)=>{this.setState({lastname: e.target.value})}}
+                            />
+                            <Label  className="mr-sm-2">Age : </Label>
+                            <Input
+                                type="text" name="age" placeholder="eg. Rap-yo!" 
+                                value={this.state.age}
+                                onChange={(e)=>{this.setState({age: e.target.value})}}
+                            />
                         </FormGroup>
                         <Button onClick={()=> this.addUser()}>Submit</Button>
                     </Form>
