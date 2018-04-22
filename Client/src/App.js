@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import promise from 'redux-promise'
 import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
-import Bear from './Bear'
+import User from './User/User'
 import Foo from './Foo'
 import reducers from './reducers/index'
 
@@ -17,7 +17,7 @@ class App extends Component {
                     <div>
                         <Switch>
                             <Route path="/foo" component={Foo}/>
-                            <Route path="/" component={Bear}/>
+                            <Route path="/" component={User}/>
                         </Switch>
                     </div>
                 </BrowserRouter>
