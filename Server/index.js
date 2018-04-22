@@ -5,46 +5,46 @@ const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const router = express.Router()
-
-let bears = [{id: 1, name: 'Pooh', weight: 70},
-    {id: 2, name: 'Winnie', weight: 60}]
+ 
+let users = [{id: 1, firstname: 'Chakerit', lastname: 'TwoCee', age: '20'}];
 
 app.use(cors())
 app.use(express.static('public'))
 
 app.use('/api', bodyParser.json() , router);   
-router.route('/bears')
+router.route('/users')
     .get((req, res) => {
-        res.send(bears)
+        res.send(users)
     })
 
     .post(
         (req, res) => {
-            const bear = {}
-            bear.id = bears.length + 1
-            bear.name = req.body.name
-            bear.weight = req.body.weight
-            bears.push(bear)
-            res.send(bears)
-            console.log('POST : '+ req.body.name);
+            const user = {}
+            user.id = users.length + 1
+            user.firstname = req.body.firstname
+            user.lastname = req.body.lastname
+            user.age = req.body.age
+            users.push(user)
+            res.send(users)
+            console.log('POST : '+ req.body.firstname);
     })
 
-router.route('/bears/:id')
+router.route('/users/:id')
     .get( (req,res) => {
-        res.send(bears[req.params.id])
+        res.send(users[req.params.id])
     })
 
     .put((req,res ) =>  {
         const id = req.params.id
-        bears[id].name = req.body.name
-        bears[id].weight = req.body.weight
-        res.send( bears)
+        users[id].name = req.body.name
+        users[id].weight = req.body.weight
+        res.send( users)
     })
 
     .delete( (req,res) => {
         const id = req.params.id
-        delete bears[id]
-        res.send(bears)
+        delete users[id]
+        res.send(users)
     })
 
 app.listen(8888)
