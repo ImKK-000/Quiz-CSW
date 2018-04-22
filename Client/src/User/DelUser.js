@@ -6,51 +6,51 @@ import {fetchUsers} from '../actions'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-class AddUser extends Component {
+class DelUser extends Component {
     constructor(props){
         super(props);
         this.state={
             firstname : '',
             lastname: '',
             age : '',
-            modal: this.props.add
+            modalDel: this.props.del
         }
-        this.toggle = this.toggle.bind(this);
+        this.toggleDel = this.toggleDel.bind(this);
     }
 
-    toggle() {
+    toggleDel() {
         this.setState({
-          modal: !this.state.modal
+          modalDel: !this.state.modalDel
         });
      }
         
-    addUser(){
-        const ROOT_URL = 'http://localhost:8888/api/users';
-        const user = this.state;
+    DelUser(){
+        // const ROOT_URL = 'http://localhost:8888/api/users';
+        // const user = this.state;
     
-        axios.post( ROOT_URL, user)
-          .then(res => {
-            console.log(res);
-            console.log(res.data);
-          })
+        // axios.post( ROOT_URL, user)
+        //   .then(res => {
+        //     console.log(res);
+        //     console.log(res.data);
+        //   })
         
-        this.setState({
-            firstname: '',
-            lastname: '',
-            age: ''
-        });
+        // this.setState({
+        //     firstname: '',
+        //     lastname: '',
+        //     age: ''
+        // });
 
-        this.props.fetchUsers();
+        // this.props.fetchUsers();
     }
 
     render() {
         return (
             // 
             <div>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+                <Modal isOpen={this.state.modalDel} toggle={this.toggleDel} className={this.props.className}>
                     <div className="add-user">      
-                        <h1> Add User </h1>
-                        <Form onSubmit={()=> this.addUser()}>
+                        <h1> Del User </h1>
+                        <Form onSubmit={()=> this.DelUser()}>
                             <FormGroup >
                                 <Label  className="mr-sm-2">Firstname : </Label>
                                 <Input
@@ -80,12 +80,12 @@ class AddUser extends Component {
         );
     }
     componentDidUpdate(prevProps){
-        if(prevProps.add !== this.props.add){
+        if(prevProps.del !== this.props.del){
             this.setState({
-                modal: !this.state.modal
+                modalDel: !this.state.modalDel
             });
         }
     }
 }
 
-export default connect(null, {fetchUsers}) (AddUser);
+export default connect(null, {fetchUsers}) (DelUser);
